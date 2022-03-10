@@ -1,3 +1,5 @@
+package es.unican.is2.ImpuestoCirculacionBusiness;
+
 /**
  * Clase que implementa la capa de negocio de la aplicacion
  */

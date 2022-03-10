@@ -1,3 +1,5 @@
+package es.unican.is2.ImpuestoCirculacionCommon;
+
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
