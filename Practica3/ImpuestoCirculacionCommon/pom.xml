@@ -3,35 +3,4 @@
   <groupId>es.unican.is2</groupId>
   <artifactId>ImpuestoCirculacionCommon</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
-  <dependencies>
-    <dependency>
-      <groupId>es.unican.is2</groupId>
-      <artifactId>ImpuestoCirculacionBusiness</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>es.unican.is2</groupId>
-      <artifactId>ImpuestoCirculacionDAO</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>es.unican.is2</groupId>
-      <artifactId>ImpuestoCirculacionGUI</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>es.unican.is2</groupId>
-      <artifactId>ImpuestoCirculacionMain</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  
 </project>
