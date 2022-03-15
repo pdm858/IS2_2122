@@ -1,5 +1,3 @@
-package es.unican.is2.ImpuestoCirculacionCommon;
-
 @SuppressWarnings("serial")
 public class Motocicleta extends Vehiculo
 {
@@ -16,7 +14,9 @@ public class Motocicleta extends Vehiculo
   
 	@Override
     public double precioImpuesto() {
-		//TODO
-		return 0;
+		return  (cilindrada < 125) ? 8.84 :
+                ((125 <= cilindrada && cilindrada < 250)  ? 15.14  :
+                ((250 <= cilindrada && cilindrada < 500)  ? 30.3   :
+                ((500 <= cilindrada && cilindrada < 1000) ? 60.58  : 121.16)));
     }
 }

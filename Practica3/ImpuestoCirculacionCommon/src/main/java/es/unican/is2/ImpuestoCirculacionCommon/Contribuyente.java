@@ -1,5 +1,3 @@
-package es.unican.is2.ImpuestoCirculacionCommon;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,8 +16,9 @@ public class Contribuyente implements Serializable {
      * @return Valor del impuesto a pagar
      */
     public double totalAPagar() {
-    	//TODO
-    	return 0;
+		int total = 0;
+		for (Vehiculo v : vehiculos) total += v.precioImpuesto();
+    	return total;
     }
     
     /**

@@ -1,5 +1,3 @@
-package es.unican.is2.ImpuestoCirculacionCommon;
-
 import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Furgoneta
@@ -29,8 +27,9 @@ public class Furgoneta
   
 	@Override
     public double precioImpuesto() {
-    	//TODO
-		return 0;
-    	
+		return  (potencia < 8) ? 25.24 :
+                ((8  <= potencia && potencia < 11.99) ? 68.16  :
+                ((12 <= potencia && potencia < 15.99) ? 143.88 :
+                ((16 <= potencia && potencia < 19.99) ? 179.22 : 224)));
     }
 }
