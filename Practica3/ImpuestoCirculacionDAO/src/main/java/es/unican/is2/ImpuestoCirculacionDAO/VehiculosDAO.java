@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import es.unican.is2.ImpuestoCirculacionCommon.Contribuyente;
+import es.unican.is2.ImpuestoCirculacionCommon.IVehiculosDAO;
+import es.unican.is2.ImpuestoCirculacionCommon.Vehiculo;
+
 /**
  * Clase que implementa la capa DAO de acceso a vehiculos.
  * Utiliza almacenamiento en fichero binario de objetos Java.

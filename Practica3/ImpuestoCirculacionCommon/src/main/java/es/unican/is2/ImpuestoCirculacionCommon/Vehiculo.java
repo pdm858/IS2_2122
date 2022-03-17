@@ -8,6 +8,13 @@ import java.time.LocalDate;
 public abstract class Vehiculo implements Serializable{
   
     private String matricula;
+    
+	public Vehiculo(String matricula, LocalDate fechaMatriculacion) {
+		super();
+		this.matricula = matricula;
+		this.fechaMatriculacion = fechaMatriculacion;
+	}
+
 	private LocalDate fechaMatriculacion;	
 
 	/**

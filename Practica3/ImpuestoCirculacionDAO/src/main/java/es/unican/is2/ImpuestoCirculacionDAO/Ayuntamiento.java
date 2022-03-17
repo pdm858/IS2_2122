@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.unican.is2.ImpuestoCirculacionCommon.Contribuyente;
+
 
 /**
  * Clase de utilidad para implementar el almacenamiento en fichero

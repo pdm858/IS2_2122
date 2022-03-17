@@ -1,5 +1,13 @@
-import javax.management.openmbean.OpenDataException;
-import javax.swing.Icon;
+package es.unican.is2.ImpuestoCirculacionBusiness;
+
+import es.unican.is2.ImpuestoCirculacionCommon.Contribuyente;
+import es.unican.is2.ImpuestoCirculacionCommon.IContribuyentesDAO;
+import es.unican.is2.ImpuestoCirculacionCommon.IGestionContribuyentes;
+import es.unican.is2.ImpuestoCirculacionCommon.IGestionVehiculos;
+import es.unican.is2.ImpuestoCirculacionCommon.IInfoImpuestoCirculacion;
+import es.unican.is2.ImpuestoCirculacionCommon.IVehiculosDAO;
+import es.unican.is2.ImpuestoCirculacionCommon.OperacionNoValida;
+import es.unican.is2.ImpuestoCirculacionCommon.Vehiculo;
 
 /**
  * Clase que implementa la capa de negocio de la aplicacion
@@ -38,7 +46,6 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 		return v;
 	}
 
-	@Override
 	public Vehiculo bajaVehiculo(String matricula, String dni) throws OperacionNoValida {
 		Contribuyente c = contribuyentes.contribuyente(dni);
 		Vehiculo v = vehiculos.vehiculo(matricula);
@@ -48,8 +55,7 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 		vehiculos.eliminaVehiculo(matricula);
 		return (c == null || v == null) ? null : v;
 	}
-
-	@Override
+	
 	public Vehiculo vehiculo(String matricula) {
 		return vehiculos.vehiculo(matricula);
 	}	

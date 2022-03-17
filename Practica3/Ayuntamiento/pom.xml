@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>es.unican.is2</groupId>
-  <artifactId>ImpuestoCirculacionMain</artifactId>
+  <artifactId>Ayuntamiento</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
   <dependencies>
     <dependency>
       <groupId>es.unican.is2</groupId>
-      <artifactId>ImpuestoCirculacionBusiness</artifactId>
+      <artifactId>ImpuestoCirculacionCommon</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
-    
+
     <dependency>
       <groupId>es.unican.is2</groupId>
       <artifactId>ImpuestoCirculacionDAO</artifactId>
@@ -18,18 +18,18 @@
     </dependency>
     
     <dependency>
-      <groupId>es.unican.is2</groupId>
-      <artifactId>ImpuestoCirculacionGUI</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>    
-    </dependencies>
-    
-    <properties>
+		<groupId>com.googlecode.jinahya</groupId>
+		<artifactId>ocap-api</artifactId>
+		<version>1.2.3</version>
+	</dependency>
+  </dependencies>
+  
+  <properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
-    
-    <build>
+	
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -40,7 +40,7 @@
 					<archive>
 						<manifest>
 							<mainClass>
-								es.unican.is2.ImpuestoCirculacionMain.Runner
+								es.unican.is2.Ayuntamiento.RellenaAyuntamiento
 							</mainClass>
 						</manifest>
 					</archive>
@@ -57,7 +57,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>es.unican.is2.ImpuestoCirculacionMain.Runner</mainClass>
+							<mainClass>es.unican.is2.Ayuntamiento.RellenaAyuntamiento</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -73,6 +73,5 @@
 				</executions>
 			</plugin>
 		</plugins>
-	</build>
-    
+	</build>  
 </project>

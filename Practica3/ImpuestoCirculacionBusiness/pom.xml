@@ -9,15 +9,17 @@
       <groupId>es.unican.is2</groupId>
       <artifactId>ImpuestoCirculacionCommon</artifactId>
       <version>0.0.1-SNAPSHOT</version>
-      <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>es.unican.is2</groupId>
       <artifactId>ImpuestoCirculacionDAO</artifactId>
       <version>0.0.1-SNAPSHOT</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
     
+    <properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
 </project>

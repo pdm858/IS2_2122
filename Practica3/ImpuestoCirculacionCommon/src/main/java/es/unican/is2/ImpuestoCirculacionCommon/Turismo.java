@@ -1,12 +1,23 @@
+package es.unican.is2.ImpuestoCirculacionCommon;
+
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @SuppressWarnings("serial")
 public class Turismo
     extends Vehiculo implements Serializable
 {
 
+	private String matricula;
+	private LocalDate fechaMat;
 	private double potencia;
 	
+	public Turismo(String matricula, LocalDate fechaMat, double potencia) {
+		super(matricula, fechaMat);
+		this.potencia = potencia;
+	}
+
+
 	/**
 	 * Retorna la potencia del turismo
 	 * @return potencia en caballos fiscales
@@ -27,5 +38,14 @@ public class Turismo
                 ((12 <= potencia && potencia < 15.99) ? 143.88 :
                 ((16 <= potencia && potencia < 19.99) ? 179.22 : 224)));
     }
-    
+
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public LocalDate getFechaMat() {
+		return fechaMat;
+	}
+
 }
