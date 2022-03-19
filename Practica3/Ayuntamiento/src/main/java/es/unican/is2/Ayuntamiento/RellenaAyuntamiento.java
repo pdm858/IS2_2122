@@ -74,7 +74,7 @@ public class RellenaAyuntamiento {
 			System.out.println(c.getNombre()+" "+c.getApellido1()+" "+c.getApellido2());
 			System.out.println(c.getDni());
 			for (Vehiculo v:c.getVehiculos()) {
-				System.out.println(v.toString());
+				System.out.println(v.getMatricula());
 			}
 		}
 	}
