@@ -123,12 +123,13 @@ public class VistaFuncionario extends JFrame {
 		Contribuyente c = info.contribuyente(dni);
 		if (c != null) {
 			txtNombreContribuyente.setText(c.getNombre() + " " + c.getApellido1() + " " + c.getApellido2());
-			txtTotalContribuyente.setText(c.getNombre());
+			txtTotalContribuyente.setText(Double.toString(c.totalAPagar()));
 			listModel.removeAllElements();
 			for (int i = 0; i < c.getVehiculos().size() - 1; i++) {
 				Vehiculo v = c.getVehiculos().get(i);
 				listModel.addElement(v.getMatricula());
 			}
+			listMatriculasVehiculos.setModel(listModel);
 		} else {
 			txtNombreContribuyente.setText("DNI No Válido");
 			txtTotalContribuyente.setText("0");

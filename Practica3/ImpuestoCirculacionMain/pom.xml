@@ -22,7 +22,7 @@
       <artifactId>ImpuestoCirculacionGUI</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>    
-    </dependencies>
+  </dependencies>
     
     <properties>
 		<maven.compiler.source>1.8</maven.compiler.source>

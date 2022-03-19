@@ -2,16 +2,18 @@ package es.unican.is2.ImpuestoCirculacionCommon;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
 @SuppressWarnings("serial")
 public class Furgoneta
-    extends Turismo implements Serializable
+    extends Vehiculo implements Serializable
 {
     
     private double potencia;
     private boolean comercial;
     
    public Furgoneta(String matricula, LocalDate fechaMat, double potencia, boolean comercial) {
-		super(matricula, fechaMat, potencia);
+		super(matricula, fechaMat);
+		this.potencia = potencia;
 		this.comercial = comercial;
 	}
 

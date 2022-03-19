@@ -36,7 +36,7 @@ public class Contribuyente implements Serializable {
      * @return lista de vehiculos del contribuyente
      */
 	public List<Vehiculo> getVehiculos() {
-		return this.vehiculos;
+		return vehiculos;
 	}
 	
 	/**
