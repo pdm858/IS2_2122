@@ -26,12 +26,8 @@ public class MotocicletaTest {
 					sut.getFechaMatriculacion() == hoy);
 			assertTrue(String.valueOf(sut.getCilindrada()),
 					sut.getCilindrada() == 20);
-		} catch (MatriculaNoValida e) {
-			fail("Caso 1: No debería lanzar la excepción (matrícula)");
-		} catch (FechaMatriculacionNoValida e) {
-			fail("Caso 1: No debería lanzar la excepción (fecha)");
-		} catch (CilindradaNoValida e) {
-			fail("Caso 1: No debería lanzar la excepción (potencia)");
+		} catch (OperacionNoValida e) {
+			fail("Caso 1: No debería lanzar la excepción");
 		}
 		
 		try {
@@ -41,12 +37,8 @@ public class MotocicletaTest {
 					sut.getFechaMatriculacion() == ayer);
 			assertTrue(String.valueOf(sut.getCilindrada()),
 					sut.getCilindrada() == 20);
-		} catch (MatriculaNoValida e) {
-			fail("Caso 1: No debería lanzar la excepción (matrícula)");
-		} catch (FechaMatriculacionNoValida e) {
-			fail("Caso 1: No debería lanzar la excepción (fecha)");
-		} catch (CilindradaNoValida e) {
-			fail("Caso 1: No debería lanzar la excepción (potencia)");
+		} catch (OperacionNoValida e) {
+			fail("Caso 1: No debería lanzar la excepción");
 		}
 		
 		/*
@@ -55,27 +47,27 @@ public class MotocicletaTest {
 		try {
 			sut = new Motocicleta(null, ayer, 130);
 			fail("Debería lanzar la excepción por matrícula no válida");
-		} catch (MatriculaNoValida e) { }
+		} catch (OperacionNoValida e) { }
 		
 		try {
 			sut = new Motocicleta("1111-AAA", manhana, 130);
 			fail("Debería lanzar la excepción por fecha no válida");
-		} catch (FechaMatriculacionNoValida e) { }
+		} catch (OperacionNoValida e) { }
 		
 		try {
 			sut = new Motocicleta("1111-AAA", null, 800);
 			fail("Debería lanzar la excepción por fecha no válida");
-		} catch (FechaMatriculacionNoValida e) { }
+		} catch (OperacionNoValida e) { }
 		
 		try {
 			sut = new Motocicleta("1111-AAA", hoy, 0);
 			fail("Debería lanzar la excepción por potencia no válida");
-		} catch (CilindradaNoValida e) { }
+		} catch (OperacionNoValida e) { }
 		
 		try {
 			sut = new Motocicleta("1111-AAA", ayer, -2);
 			fail("Debería lanzar la excepción por potencia no válida");
-		} catch (MatriculaNoValida e) { }
+		} catch (OperacionNoValida e) { }
 		
 	}
 	
@@ -85,49 +77,100 @@ public class MotocicletaTest {
 		Motocicleta sut;
 		LocalDate hoy		= LocalDate.now();
 		LocalDate ayer		= hoy.minusDays(1);
-		LocalDate manhana	= hoy.plusDays(1);
 		
 		/*
 		 * Casos válidos
 		 */
-		sut = new Motocicleta("1111-A", LocalDate.parse("2008-03-12"), 50);
-		assertTrue(sut.precioImpuesto() == 8.84);
+		try {
+			sut = new Motocicleta("1111-A", LocalDate.parse("2008-03-12"), 50);
+			assertEquals(8.84, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 1: no debería fallar el constructor");
+		}
 
-		sut = new Motocicleta("1111-A", hoy, 124.99);
-		assertTrue(sut.precioImpuesto() == 8.84);
+		try {
+			sut = new Motocicleta("1111-A", hoy, 124.99);
+			assertEquals(8.84, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 2: no debería fallar el constructor");
+		}
 		
-		sut = new Motocicleta("1111-A", ayer, 125);
-		assertTrue(sut.precioImpuesto() == 15.14);
+		try {
+			sut = new Motocicleta("1111-A", ayer, 125);
+			assertEquals(15.14, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 3: no debería fallar el constructor");
+		}
 
-		sut = new Motocicleta("1111-A", LocalDate.parse("1975-06-16"), 200);
-		assertTrue(sut.precioImpuesto() == 0);
+		try {
+			sut = new Motocicleta("1111-A", LocalDate.parse("1975-06-16"), 200);
+			assertEquals(0, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 4: no debería fallar el constructor");
+		}
 
-		sut = new Motocicleta("1111-A", ayer, 249.99);
-		assertTrue(sut.precioImpuesto() == 15.14);
+		try {
+			sut = new Motocicleta("1111-A", ayer, 249.99);
+			assertEquals(15.14, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 5: no debería fallar el constructor");
+		}
 
-		sut = new Motocicleta("1111-A", hoy, 250);
-		assertTrue(sut.precioImpuesto() == 30.30);
+		try {
+			sut = new Motocicleta("1111-A", hoy, 250);
+			assertEquals(30.30, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 6: no debería fallar el constructor");
+		}
 
-		sut = new Motocicleta("1111-A", LocalDate.parse("1975-06-16"), 400);
-		assertTrue(sut.precioImpuesto() == 0);
+		try {
+			sut = new Motocicleta("1111-A", LocalDate.parse("1975-06-16"), 400);
+			assertEquals(0, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 7: no debería fallar el constructor");
+		}
 
-		sut = new Motocicleta("1111-A", hoy, 499.99);
-		assertTrue(sut.precioImpuesto() == 30.30);
+		try {
+			sut = new Motocicleta("1111-A", hoy, 499.99);
+			assertEquals(30.30, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 8: no debería fallar el constructor");
+		}
 
-		sut = new Motocicleta("1111-A", ayer, 500);
-		assertTrue(sut.precioImpuesto() == 60.58);
+		try {
+			sut = new Motocicleta("1111-A", ayer, 500);
+			assertEquals(60.58, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 9: no debería fallar el constructor");
+		}
 
-		sut = new Motocicleta("1111-A", hoy, 700);
-		assertTrue(sut.precioImpuesto() == 60.58);
+		try {
+			sut = new Motocicleta("1111-A", hoy, 700);
+			assertEquals(60.58, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 10: no debería fallar el constructor");
+		}
 		
-		sut = new Motocicleta("1111-A", ayer, 999.99);
-		assertTrue(sut.precioImpuesto() == 60.58);
+		try {
+			sut = new Motocicleta("1111-A", ayer, 999.99);
+			assertEquals(60.58, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 11: no debería fallar el constructor");
+		}
 
-		sut = new Motocicleta("1111-A", hoy, 1000);
-		assertTrue(sut.precioImpuesto() == 121.16);
+		try {
+			sut = new Motocicleta("1111-A", hoy, 1000);
+			assertEquals(121.16, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 12: no debería fallar el constructor");
+		}
 
-		sut = new Motocicleta("1111-A", ayer, 1500);
-		assertTrue(sut.precioImpuesto() == 121.16);
+		try {
+			sut = new Motocicleta("1111-A", ayer, 1500);
+			assertEquals(121.16, sut.precioImpuesto(), 0.001);
+		} catch (OperacionNoValida e) {
+			fail("Caso 13: no debería fallar el constructor");
+		}
 		
 	}
 

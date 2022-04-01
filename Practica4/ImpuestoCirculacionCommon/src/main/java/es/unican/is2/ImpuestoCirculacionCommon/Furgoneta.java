@@ -7,12 +7,27 @@ import java.time.LocalDate;
 public class Furgoneta
     extends Vehiculo implements Serializable
 {
+	private static final double BONIFICACION = 0.2;
     
     private double potencia;
     private boolean comercial;
     
-   public Furgoneta(String matricula, LocalDate fechaMat, double potencia, boolean comercial) {
-		super(matricula, fechaMat);
+   public Furgoneta(String matricula, LocalDate fechaMatriculacion,
+		   double potencia, boolean comercial) throws OperacionNoValida {
+		super(matricula, fechaMatriculacion);
+		
+		if (matricula == null)
+			throw new OperacionNoValida("Debe indicar un valor para la"
+					+ " matricula");
+		if (fechaMatriculacion == null)
+			throw new OperacionNoValida("Debe indicar un valor para la fecha");
+		if (fechaMatriculacion.isAfter(LocalDate.now()))
+			throw new OperacionNoValida("No puede matricular un "
+					+ "vehiculo con una fecha posterior a hoy");
+		if (potencia <= 0)
+			throw new OperacionNoValida("No puede registrar un vehiculo con"
+					+ " potencia inferior o igual a 0 CV");
+
 		this.potencia = potencia;
 		this.comercial = comercial;
 	}
@@ -37,9 +52,15 @@ public class Furgoneta
   
 	@Override
     public double precioImpuesto() {
-		return  (potencia < 8) ? 25.24 :
-                ((8  <= potencia && potencia < 11.99) ? 68.16  :
-                ((12 <= potencia && potencia < 15.99) ? 143.88 :
-                ((16 <= potencia && potencia < 19.99) ? 179.22 : 224)));
+		double precio;
+		if (getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)))
+			precio = 0;
+		else
+			precio = (potencia < 8) ? 25.24 :
+                ((8  <= potencia && potencia < 12) ? 68.16  :
+                ((12 <= potencia && potencia < 16) ? 143.88 :
+                ((16 <= potencia && potencia < 20) ? 179.22 : 224)));
+		if (comercial) precio = (1 - BONIFICACION) * precio;
+		return precio;
     }
 }

@@ -10,8 +10,22 @@ public class Turismo
 
 	private double potencia;
 	
-	public Turismo(String matricula, LocalDate fechaMat, double potencia) {
-		super(matricula, fechaMat);
+	public Turismo(String matricula, LocalDate fechaMatriculacion,
+			double potencia) throws OperacionNoValida {
+		super(matricula, fechaMatriculacion);
+		
+		if (matricula == null)
+			throw new OperacionNoValida("Debe indicar un valor para la"
+					+ "matricula");
+		if (fechaMatriculacion == null)
+			throw new OperacionNoValida("Debe indicar un valor para la fecha");
+		if (fechaMatriculacion.isAfter(LocalDate.now()))
+			throw new OperacionNoValida("No puede matricular un "
+					+ "vehiculo con una fecha posterior a hoy");
+		if (potencia <= 0)
+			throw new OperacionNoValida("No puede registrar un vehiculo con"
+					+ " potencia inferior o igual a 0 CV");
+		
 		this.potencia = potencia;
 	}
 
@@ -31,10 +45,15 @@ public class Turismo
      */
 	@Override
     public double precioImpuesto() {
-    	return  (potencia < 8) ? 25.24 :
-                ((8  <= potencia && potencia < 11.99) ? 68.16  :
-                ((12 <= potencia && potencia < 15.99) ? 143.88 :
-                ((16 <= potencia && potencia < 19.99) ? 179.22 : 224)));
+		double precio;
+		if (getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)))
+			precio = 0;
+		else
+			precio = (potencia < 8) ? 25.24 :
+                ((8  <= potencia && potencia < 12) ? 68.16  :
+                ((12 <= potencia && potencia < 16) ? 143.88 :
+                ((16 <= potencia && potencia < 20) ? 179.22 : 224)));
+		return precio;
     }
 
 }
