@@ -46,16 +46,16 @@ public class VistaFuncionarioTest {
 		// Comprobamos la salida
 		demo.textBox("txtTotalContribuyente").requireText("0");
 		demo.textBox("txtNombreContribuyente").requireText("DNI No Válido");
-		demo.textBox("listMatriculasVehiculos").requireText("");
+		demo.textBox("listMatriculasVehiculos").requireEmpty();
 		
 		// Escribimos en el campo de Texto
 		demo.textBox("txtDniContribuyente").enterText("11111111A");
 		// Pulsamos el botón
 		demo.button("btnBuscar").click();
 		// Comprobamos la salida
-		demo.textBox("txtTotalContribuyente").requireText("448.0");
+		demo.textBox("txtTotalContribuyente").requireText("403.0");
 		demo.textBox("txtNombreContribuyente").requireText("Pepe López Martínez");
-		demo.textBox("listMatriculasVehiculos").requireText("1111-AAA"+"1111-BBB");
+		demo.textBox("listMatriculasVehiculos").requireText("1111-AAA"+""+"1111-BBB");
 		
 /*		// Escribimos en el campo de Texto
 		demo.textBox("txtDniContribuyente").enterText("22222222B");
