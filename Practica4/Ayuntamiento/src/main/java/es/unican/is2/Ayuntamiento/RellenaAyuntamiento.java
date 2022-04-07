@@ -37,7 +37,7 @@ public class RellenaAyuntamiento {
 		    Turismo t2 = new Turismo("2222-AAA", LocalDate.now().minusYears(30), 70);
 			Motocicleta m2 = new Motocicleta("2222-BBB", LocalDate.now().minusDays(100), 50);
 			c2.getVehiculos().add(t2);
-			c2.getVehiculos().add(m2);	
+			c2.getVehiculos().add(m2);
 			
 			// Tercer contribuyente
 			Contribuyente c3 = new Contribuyente("Luis", "Toca", "Pérez", "33333333C");
