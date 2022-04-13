@@ -77,6 +77,7 @@ public class VistaFuncionario extends JFrame {
 		contentPane.add(listMatriculasVehiculos);
 		listMatriculasVehiculos.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listMatriculasVehiculos.setModel(listModel);
+		listMatriculasVehiculos.setName("listMatriculasVehiculos");
 
 		JLabel lblVehiculos = new JLabel("Vehiculos");
 		lblVehiculos.setBounds(149, 93, 65, 14);

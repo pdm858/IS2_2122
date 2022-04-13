@@ -23,14 +23,15 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 	}
 	
 	public Contribuyente altaContribuyente(Contribuyente c) {
-		return (contribuyentes.creaContribuyente(c) == null) ? null : c;
+		return contribuyentes.creaContribuyente(c);
 	}
 	
 	public Contribuyente bajaContribuyente(String dni) throws OperacionNoValida {
-		Contribuyente c = contribuyentes.eliminaContribuyente(dni);
+		Contribuyente c = contribuyentes.contribuyente(dni); 
 		if (c != null && !c.getVehiculos().isEmpty())
 			throw new OperacionNoValida("El contribuyente tiene vehiculos a su nombre");
-		return c;		
+		contribuyentes.eliminaContribuyente(dni);
+		return c;	
 	 }
 	
 	public Contribuyente contribuyente(String dni) {
@@ -38,11 +39,12 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 	}
 
 	public Vehiculo altaVehiculo(Vehiculo v, String dni) throws OperacionNoValida {
+		if (vehiculos.creaVehiculo(v) == null)
+			throw new OperacionNoValida("El vehiculo ya existe");
 		Contribuyente c = contribuyentes.contribuyente(dni);
 		if (c == null) return null;
 		c.getVehiculos().add(v);
-		if (vehiculos.creaVehiculo(v) == null)
-			throw new OperacionNoValida("El vehiculo ya existe");
+		contribuyentes.actualizaContribuyente(c);
 		return v;
 	}
 
@@ -51,13 +53,15 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 		Vehiculo v = vehiculos.vehiculo(matricula);
 		if (!c.getVehiculos().contains(v))
 			throw new OperacionNoValida("El vehiculo no pertenece al contribuyente");
+		if (c == null || v == null)
+			return null;
 		c.getVehiculos().remove(v);
 		vehiculos.eliminaVehiculo(matricula);
-		return (c == null || v == null) ? null : v;
+		contribuyentes.actualizaContribuyente(c);
+		return v;
 	}
 	
 	public Vehiculo vehiculo(String matricula) {
 		return vehiculos.vehiculo(matricula);
 	}	
 }
-
