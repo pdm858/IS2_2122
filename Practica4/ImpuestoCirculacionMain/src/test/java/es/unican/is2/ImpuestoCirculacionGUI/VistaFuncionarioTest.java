@@ -36,9 +36,15 @@ public class VistaFuncionarioTest {
 	
 	@Test
 	public void test() {
-		// Comprobamos que la interfaz tiene el aspecto deseado
+		
+		/*
+		 * Prueba aspecto de la interfaz
+		 */
 		demo.button("btnBuscar").requireText("Buscar");
 		
+		/*
+		 * Prueba DNI no válido
+		 */
 		// Escribimos en el campo de Texto
 		demo.textBox("txtDniContribuyente").enterText("1111-AAA");
 		// Pulsamos el botón
@@ -47,9 +53,11 @@ public class VistaFuncionarioTest {
 		demo.textBox("txtTotalContribuyente").requireText("0");
 		demo.textBox("txtNombreContribuyente").requireText("DNI No Válido");
 		
-		//demo.textBox("listMatriculasVehiculos").requireEmpty();
 		demo.list("listMatriculasVehiculos").requireItemCount(0);
 		
+		/*
+		 * Prueba DNI válido
+		 */
 		// Escribimos en el campo de Texto
 		demo.textBox("txtDniContribuyente").deleteText();
 		demo.textBox("txtDniContribuyente").enterText("11111111A");
@@ -60,29 +68,34 @@ public class VistaFuncionarioTest {
 		demo.textBox("txtNombreContribuyente").requireText("Pepe López Martínez");
 		demo.list("listMatriculasVehiculos").item(0).toString().equals("1111-AAA");
 		demo.list("listMatriculasVehiculos").item(1).toString().equals("1111-BBB");
-/*		
-		// Escribimos en el campo de Texto
-		demo.textBox("txtDniContribuyente").deleteText();
-		demo.textBox("txtDniContribuyente").enterText("22222222B");
-		// Pulsamos el botón
-		demo.button("btnBuscar").click();
-		// Comprobamos la salida
-		demo.textBox("txtTotalContribuyente").requireText("232.0");
-		demo.textBox("txtNombreContribuyente").requireText("Ana Pérez López");
-		demo.list("listMatriculasVehiculos").item(0).toString().equals("2222-AAA");
-		demo.list("listMatriculasVehiculos").item(1).toString().equals("2222-BBB");
 		
+		
+		/*
+		 * Prueba DNI vacío
+		 */
 		// Escribimos en el campo de Texto
 		demo.textBox("txtDniContribuyente").deleteText();
-		demo.textBox("txtDniContribuyente").enterText("33333333C");
+		demo.textBox("txtDniContribuyente").enterText("");
 		// Pulsamos el botón
 		demo.button("btnBuscar").click();
 		// Comprobamos la salida
-		demo.textBox("txtTotalContribuyente").requireText("249.0");
-		demo.textBox("txtNombreContribuyente").requireText("Luis Toca Pérez");
-		demo.list("listMatriculasVehiculos").item(0).toString().equals("3333-AAA");
-		demo.list("listMatriculasVehiculos").item(1).toString().equals("3333-BBB");
-*/
+		demo.textBox("txtTotalContribuyente").requireText("0");
+		demo.textBox("txtNombreContribuyente").requireText("DNI No Válido");
+		demo.list("listMatriculasVehiculos").requireItemCount(0);
+		
+		/*
+		 * Prueba DNI vacío
+		 */
+		// Escribimos en el campo de Texto
+		demo.textBox("txtDniContribuyente").deleteText();
+		demo.textBox("txtDniContribuyente").enterText("44444444D");
+		// Pulsamos el botón
+		demo.button("btnBuscar").click();
+		// Comprobamos la salida
+		demo.textBox("txtTotalContribuyente").requireText("0.0");
+		demo.textBox("txtNombreContribuyente").requireText("Luisa Martínez López");
+		demo.list("listMatriculasVehiculos").requireItemCount(0);
+		
 	}
 	
 }

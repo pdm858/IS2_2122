@@ -46,10 +46,14 @@ public class RellenaAyuntamiento {
 			c3.getVehiculos().add(t3);
 			c3.getVehiculos().add(t3b);	
 			
+			// Cuarto contribuyente
+			Contribuyente c4 = new Contribuyente("Luisa", "Martínez", "López", "44444444D");
+			
 			ay = new Ayuntamiento();
 			ay.getContribuyentes().add(c1);
 			ay.getContribuyentes().add(c2);
 			ay.getContribuyentes().add(c3);
+			ay.getContribuyentes().add(c4);
 		
 		} catch (OperacionNoValida e) {}
 		
