@@ -33,6 +33,9 @@ public class ListaOrdenadaAcotada<E extends Comparable<E>> implements IListaOrde
 
 	public void add(E elemento) {
 		// compruebo si cabe
+		if (elemento == null) {
+			throw new NullPointerException();
+		}
 		if (ultimo == lista.length - 1) {
 			throw new IllegalStateException();
 		}

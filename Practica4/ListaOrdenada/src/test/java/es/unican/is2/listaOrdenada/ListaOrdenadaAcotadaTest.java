@@ -4,17 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import es.unican.is2.listaOrdenadaAcotada.ListaOrdenadaAcotada;
-
 public class ListaOrdenadaAcotadaTest {
 	
 	ListaOrdenadaAcotada<Integer> sut = new ListaOrdenadaAcotada<Integer>();
 	
 	@Test
-	public void testAddGetSize() {			//PROBLEMAS FAIL CON 2 LISTA VACIA Y PROBAR NULL (DONDE 15)
+	public void testAddGetSize() {	
 		try {
 			sut.get(2); //índice no válido
-			//fail("Indice 2 no valido en lista vacía");
+			fail("Indice 2 no valido en lista vacía");
 		} catch (IndexOutOfBoundsException e) {}
 		
 		sut.add(1); //añade a lista vacia
@@ -35,7 +33,13 @@ public class ListaOrdenadaAcotadaTest {
 		sut.add(9);
 		sut.add(7); //añade numero repetido
 		sut.add(12);
-		sut.add(15); //probar null ??
+		
+		try {
+			sut.add(null); //probar null 
+			fail("No se puede añadir un elemento nulo");
+		} catch (NullPointerException e) {}
+		
+		sut.add(15);
 		assertTrue("Elemento: " + sut.get(9), sut.get(9) == 15);
 		assertTrue("Tamaño: " + sut.size(), sut.size() == 10); //tamaño máximo
 		
@@ -71,7 +75,7 @@ public class ListaOrdenadaAcotadaTest {
 		sut.add(1); //Eliminar con más de un elemento
 		sut.add(3);
 		num = sut.remove(0);
-		assertTrue("Elemento: " + num, num == 3);
+		assertTrue("Elemento: " + num, num == 1);
 		assertTrue("Tamaño: " + sut.size(), sut.size() == 1);
 		
 		sut.add(3); //Eliminar para lista llena
