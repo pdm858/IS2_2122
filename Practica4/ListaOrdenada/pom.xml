@@ -12,10 +12,6 @@
 		<scope>test</scope>
 	</dependency>
 	
-	<dependency>
-  		<groupId>es.unican.is2</groupId>
-		<artifactId>listaOrdenadaAcotada</artifactId>
-		<version>1.0</version>
-  </dependency>
+	
   </dependencies>
 </project>
