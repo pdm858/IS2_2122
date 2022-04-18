@@ -65,7 +65,7 @@ public class MotocicletaTest {
 		} catch (OperacionNoValida e) { }
 		
 		try {
-			sut = new Motocicleta("1111-AAA", ayer, -2);
+			sut = new Motocicleta("1111-AAA", ayer, -20);
 			fail("Debería lanzar la excepción por potencia no válida");
 		} catch (OperacionNoValida e) { }
 		

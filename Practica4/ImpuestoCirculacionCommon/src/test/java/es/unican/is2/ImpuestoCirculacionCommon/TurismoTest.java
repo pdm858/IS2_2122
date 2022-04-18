@@ -63,7 +63,7 @@ public class TurismoTest {
 		} catch (OperacionNoValida e) { }
 		
 		try {
-			sut = new Turismo("1111-AAA", ayer, -2);
+			sut = new Turismo("1111-AAA", ayer, -20);
 			fail("Debería lanzar la excepción por potencia no válida");
 		} catch (OperacionNoValida e) { }
 		
