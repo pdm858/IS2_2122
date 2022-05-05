@@ -16,7 +16,7 @@ import java.util.Scanner;
  * vendedor. Los datos de la tienda se almacenan en un fichero de texto
  * que se pasa como parámetro al crear la tienda
  */
-public class Tienda {
+public class Tienda { //WMC=35 WMCn=35/12=2.92 //CCog=31
 
 	private LinkedList<Vendedor> lista = new LinkedList<Vendedor>();
 	private String direccion;
@@ -58,7 +58,7 @@ public class Tienda {
 	 *         false si ya había un vendedor con el mismo id
 	 */
 	public boolean anhade(Vendedor nuevoVendedor) throws IOException { //WMC+1
-		if (buscaVendedor(nuevoVendedor.getId()) != null)
+		if (buscaVendedor(nuevoVendedor.getId()) != null) //WMC+1 //CCog+1
 			return false;
 		lista.add(nuevoVendedor);
 		vuelcaDatos();
@@ -74,7 +74,7 @@ public class Tienda {
 	 */
 	public boolean eliminaVendedor(String id) throws IOException { //WMC+1
 		Vendedor elVendedor = buscaVendedor(id);
-		if (elVendedor == null)
+		if (elVendedor == null) //WMC+1 //CCog+1
 			return false;
 		lista.remove(elVendedor);
 		vuelcaDatos();
@@ -90,11 +90,11 @@ public class Tienda {
 	 */
 	public boolean anhadeVenta(String id, double importe) throws IOException { //WMC+1
 		Vendedor elVendedor = buscaVendedor(id);
-		if (elVendedor == null) { //WMC+1	Ccog+1
+		if (elVendedor == null) { //WMC+1 //CCog+1
 			return false;
 		}
 		
-		if (elVendedor instanceof VendedorEnPlantilla) { //WMC+1	Ccog+1
+		if (elVendedor instanceof VendedorEnPlantilla) { //WMC+1 //CCog+1
 			importe = ((VendedorEnPlantilla) elVendedor).importeFinal(importe);
 		}
 		
@@ -103,9 +103,9 @@ public class Tienda {
 		return true;
 	}
 
-	private void leeSeccion(Scanner in, String tipoVendedor, LinkedList<Vendedor> lista) {
+	private void leeSeccion(Scanner in, String tipoVendedor, LinkedList<Vendedor> lista) { //WMC+1
 		Vendedor ven = null;
-		while (in.hasNext() && !in.next().equals(tipoVendedor)) { //WMC+1+1	Ccog+1+1
+		while (in.hasNext() && !in.next().equals(tipoVendedor)) { //WMC+1+1	//CCog+1+1
 			String nombre = in.next();
 			in.next();
 			String idIn = in.next();
@@ -113,19 +113,19 @@ public class Tienda {
 			String dni= in.next();
 			in.next();
 			double totalVentas = in.nextDouble();
-			if (tipoVendedor.equals("Senior")) {
+			if (tipoVendedor.equals("Senior")) { //WMC+1 //CCog+2
 				ven = new VendedorEnPlantillaSenior(nombre, idIn, dni, TipoVendedor.SENIOR);
-			} else if (tipoVendedor.equals("Junior")) {
+			} else if (tipoVendedor.equals("Junior")) { //WMC+1 //CCog+1
 				ven = new VendedorEnPlantillaJunior(nombre, idIn, dni, TipoVendedor.JUNIOR);
-			} else {
-				ven = new vendedorEnPracticas(nombre, idIn, dni);
+			} else { //WMC+1 //CCog+1
+				ven = new VendedorEnPracticas(nombre, idIn, dni);
 			}
 			ven.setT(totalVentas);
 			lista.add(ven);
 		}
 	}
 
-    private void leeFich() {
+    private void leeFich() { //WMC+1
 		Scanner in = null;
 		try {
 			// abre el fichero
@@ -141,10 +141,10 @@ public class Tienda {
 			leeSeccion(in, "Junior", lista);
 			// lee los vendedores en practicas
 			leeSeccion(in, "Prácticas", lista);
-		} catch (FileNotFoundException e) { // Ccog+1
+		} catch (FileNotFoundException e) { //CCog+1
 			System.out.println("No se pudo leer el fichero");
 		} finally {
-			if (in != null) { //WMC+1	Ccog+1
+			if (in != null) { //WMC+1 //CCog+1
 				in.close();
 			}
 		}
@@ -157,8 +157,8 @@ public class Tienda {
 	 * @return vendedor con ese id o null si no existe ninguno
 	 */
 	public Vendedor buscaVendedor(String id) { //WMC+1
-		for (Vendedor v : lista) { //WMC+1	Ccog+1
-			if (v.getId().equals(id)) { //WMC+1	Ccog+1+1
+		for (Vendedor v : lista) { //WMC+1 //CCog+1
+			if (v.getId().equals(id)) { //WMC+1	//CCog+2
 				return v;
 			}
 		}
@@ -183,14 +183,14 @@ public class Tienda {
 		List<Vendedor> junior = new LinkedList<Vendedor>();
 		List<Vendedor> practicas = new LinkedList<Vendedor>();
 
-		for (Vendedor v : lista) { //WMC+1	Ccog+1
-			if (v instanceof vendedorEnPracticas) { //WMC+1	Ccog+2
+		for (Vendedor v : lista) { //WMC+1 //CCog+1
+			if (v instanceof VendedorEnPracticas) { //WMC+1 //CCog+2
 				practicas.add(v);
-			} else if (v instanceof VendedorEnPlantilla) { //WMC+1	Ccog+1
+			} else if (v instanceof VendedorEnPlantilla) { //WMC+1 //CCog+1
 				VendedorEnPlantilla vp = (VendedorEnPlantilla) v;
-				if (vp.tipo().equals(TipoVendedor.JUNIOR)) //WMC+1	Ccog+1+1+1
+				if (vp.tipo().equals(TipoVendedor.JUNIOR)) //WMC+1 //CCog+3
 					junior.add(vp);
-				else // Ccog+1
+				else //WMC+1 //CCog+1
 					senior.add(vp);
 			}
 		}
@@ -204,26 +204,38 @@ public class Tienda {
 			out.println();
 			out.println("Senior");
 			
-			for (Vendedor v : senior) { //WMC+1	Ccog+1
+			for (Vendedor v : senior) { //WMC+1 //CCog+1
 				VendedorEnPlantilla v1 = (VendedorEnPlantilla) v;
 				v1.imprimeDatos(out);
 			}
 			out.println();
 			out.println("Junior");
-			for (Vendedor v : junior) { //WMC+1	Ccog+1
+			for (Vendedor v : junior) { //WMC+1 //CCog+1
 				VendedorEnPlantilla v2 = (VendedorEnPlantilla) v;
 				v2.imprimeDatos(out);
 			}
 			out.println();
 			out.println("Prácticas");
-			for (Vendedor v : practicas) { //WMC+1	Ccog+1
-				vendedorEnPracticas v3 = (vendedorEnPracticas) v;
+			for (Vendedor v : practicas) { //WMC+1 //CCog+1
+				VendedorEnPracticas v3 = (VendedorEnPracticas) v;
 				v3.imprimeDatos(out);
 			}
 
 		} finally {
-			if (out != null) //WMC+1	Ccog+1
+			if (out != null) //WMC+1 //CCog+1
 				out.close();
+		}
+	}
+	
+	public void ventasMaximas(List<Vendedor> resultado, double maxVentas) { //WMC+1
+		for (Vendedor v : lista) { //WMC+1 //CCog+1
+			if (v.getTotalVentas() > maxVentas) { //WMC+1 //CCog+2
+				maxVentas = v.getTotalVentas();
+				resultado.clear();
+				resultado.add(v);
+			} else if (v.getTotalVentas() == maxVentas) { //WMC+1 //CCog+1
+				resultado.add(v);
+			}
 		}
 	}
 
