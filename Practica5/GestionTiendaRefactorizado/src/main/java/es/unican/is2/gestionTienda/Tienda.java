@@ -16,7 +16,7 @@ import java.util.Scanner;
  * vendedor. Los datos de la tienda se almacenan en un fichero de texto
  * que se pasa como parámetro al crear la tienda
  */
-public class Tienda { //WMC=35 WMCn=35/12=2.92 //CCog=31
+public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 
 	private LinkedList<Vendedor> lista = new LinkedList<Vendedor>();
 	private String direccion;
@@ -57,8 +57,9 @@ public class Tienda { //WMC=35 WMCn=35/12=2.92 //CCog=31
 	 * @return true si el vendedor se ha anhadido 
 	 *         false si ya había un vendedor con el mismo id
 	 */
-	public boolean anhade(Vendedor nuevoVendedor) throws IOException { //WMC+1
-		if (buscaVendedor(nuevoVendedor.getId()) != null) //WMC+1 //CCog+1
+	public boolean anhadeVendedor(Vendedor nuevoVendedor) throws IOException { //WMC+1
+		Vendedor elVendedor = buscaVendedor(nuevoVendedor.getId());
+		if (elVendedor != null) //WMC+1 //CCog+1
 			return false;
 		lista.add(nuevoVendedor);
 		vuelcaDatos();
@@ -114,10 +115,10 @@ public class Tienda { //WMC=35 WMCn=35/12=2.92 //CCog=31
 			in.next();
 			double totalVentas = in.nextDouble();
 			if (tipoVendedor.equals("Senior")) { //WMC+1 //CCog+2
-				ven = new VendedorEnPlantillaSenior(nombre, idIn, dni, TipoVendedor.SENIOR);
+				ven = new VendedorEnPlantillaSenior(nombre, idIn, dni);
 			} else if (tipoVendedor.equals("Junior")) { //WMC+1 //CCog+1
-				ven = new VendedorEnPlantillaJunior(nombre, idIn, dni, TipoVendedor.JUNIOR);
-			} else { //WMC+1 //CCog+1
+				ven = new VendedorEnPlantillaJunior(nombre, idIn, dni);
+			} else { //CCog+1
 				ven = new VendedorEnPracticas(nombre, idIn, dni);
 			}
 			ven.setT(totalVentas);
@@ -157,6 +158,7 @@ public class Tienda { //WMC=35 WMCn=35/12=2.92 //CCog=31
 	 * @return vendedor con ese id o null si no existe ninguno
 	 */
 	public Vendedor buscaVendedor(String id) { //WMC+1
+		leeFich();
 		for (Vendedor v : lista) { //WMC+1 //CCog+1
 			if (v.getId().equals(id)) { //WMC+1	//CCog+2
 				return v;
@@ -170,6 +172,7 @@ public class Tienda { //WMC=35 WMCn=35/12=2.92 //CCog=31
 	 * @return La lista de vendedores
 	 */
 	public List<Vendedor> vendedores() { //WMC+1
+		leeFich();
 		return lista;
 	}
 
@@ -184,49 +187,43 @@ public class Tienda { //WMC=35 WMCn=35/12=2.92 //CCog=31
 		List<Vendedor> practicas = new LinkedList<Vendedor>();
 
 		for (Vendedor v : lista) { //WMC+1 //CCog+1
-			if (v instanceof VendedorEnPracticas) { //WMC+1 //CCog+2
+			if (v instanceof VendedorEnPracticas) {	//WMC+1	CCog+2
 				practicas.add(v);
-			} else if (v instanceof VendedorEnPlantilla) { //WMC+1 //CCog+1
-				VendedorEnPlantilla vp = (VendedorEnPlantilla) v;
-				if (vp.tipo().equals(TipoVendedor.JUNIOR)) //WMC+1 //CCog+3
-					junior.add(vp);
-				else //WMC+1 //CCog+1
-					senior.add(vp);
+			} else if (v instanceof VendedorEnPlantillaJunior) {	//WMC+1	CCog+1
+				junior.add(v);
+			} else if (v instanceof VendedorEnPlantillaSenior) {	//WMC+1	CCog+1
+				senior.add(v);
 			}
 		}
 
 		try {
-
 			out = new PrintWriter(new FileWriter(datos));
-
 			out.println(nombre);
 			out.println(direccion);
+
 			out.println();
-			out.println("Senior");
-			
-			for (Vendedor v : senior) { //WMC+1 //CCog+1
-				VendedorEnPlantilla v1 = (VendedorEnPlantilla) v;
-				v1.imprimeDatos(out);
-			}
+			out.println("Senior");	
+			imprimeDatosVendedores(senior, out);
+
 			out.println();
 			out.println("Junior");
-			for (Vendedor v : junior) { //WMC+1 //CCog+1
-				VendedorEnPlantilla v2 = (VendedorEnPlantilla) v;
-				v2.imprimeDatos(out);
-			}
-			out.println();
-			out.println("Prácticas");
-			for (Vendedor v : practicas) { //WMC+1 //CCog+1
-				VendedorEnPracticas v3 = (VendedorEnPracticas) v;
-				v3.imprimeDatos(out);
-			}
+			imprimeDatosVendedores(junior, out);
 
+			out.println();
+			out.println("Pr�cticas");	
+			imprimeDatosVendedores(practicas, out);
 		} finally {
 			if (out != null) //WMC+1 //CCog+1
 				out.close();
 		}
 	}
 	
+	private void imprimeDatosVendedores(List<Vendedor> vendedores, PrintWriter out) { //WMC+1
+		for (Vendedor v: vendedores) { //WMC+1 //CCog+1
+			v.imprimeDatos(out);
+		}
+	}
+
 	public void ventasMaximas(List<Vendedor> resultado, double maxVentas) { //WMC+1
 		for (Vendedor v : lista) { //WMC+1 //CCog+1
 			if (v.getTotalVentas() > maxVentas) { //WMC+1 //CCog+2

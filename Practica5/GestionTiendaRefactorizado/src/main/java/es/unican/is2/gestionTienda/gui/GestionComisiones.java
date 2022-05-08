@@ -15,7 +15,7 @@ import fundamentos.Mensaje;
 /**
  * Gestión de las comisiones de vendedores de una tienda
  */
-public class GestionComisiones { //WMC=9 WMCn=9/2=4.5 //CCog=14
+public class GestionComisiones { //WMC=9 WMCn=9/2=4.5 //CCog=15
 
 	/**
 	 * Programa principal basado en menu
@@ -59,7 +59,7 @@ public class GestionComisiones { //WMC=9 WMCn=9/2=4.5 //CCog=14
 					if (!tienda.anhadeVenta(dni, importe)) { //WMC+1 //CCog+3
 						mensaje("ERROR", "El vendedor no existe");
 					}
-				} catch (IOException e) { //CCog+1
+				} catch (IOException e) { //CCog+3
 					mensaje("ERROR", "No se pudo guardar el cambio");
 				}
 				break;

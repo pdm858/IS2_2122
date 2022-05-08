@@ -7,7 +7,7 @@ import java.io.PrintWriter;
  * Por cada vendedor se almacenan sus datos personales 
  * y sus datos sobre ventas y comisiones
  */
-public abstract class Vendedor { //WMC=11 WMCn=11/8=1.375 //CCog=3
+public abstract class Vendedor { //WMC=8 WMCn=8/8=1 //CCog=0
 	
 	private String id;
 	private String nombre;
@@ -70,18 +70,9 @@ public abstract class Vendedor { //WMC=11 WMCn=11/8=1.375 //CCog=3
 		t += importe;
 	}
 	
-	public void imprimeDatos(PrintWriter out) {
+	public void imprimeDatos(PrintWriter out) { //WMC+1
 		out.println("  Nombre: " + getNombre() + " Id: " + getId() + " DNI: "+ getDni()+" TotalVentasMes: "
 				+ getTotalVentas());
-	}
-	
-	
-	@Override
-	public boolean equals(Object obj) { //WMC+1
-		if (!(obj instanceof VendedorEnPlantilla)) //WMC+1 //CCog+1
-			return false;
-		Vendedor v = (Vendedor) obj;
-		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC+1+1 //CCog+1+1
 	}
 	
 }
