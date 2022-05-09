@@ -19,5 +19,10 @@ public class VendedorEnPracticas extends Vendedor { //WMC=4 WMCn=4/2=2 //CCog=2
 		VendedorEnPracticas v = (VendedorEnPracticas) obj;
 		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC+1 //CCog+1
 	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 
 }

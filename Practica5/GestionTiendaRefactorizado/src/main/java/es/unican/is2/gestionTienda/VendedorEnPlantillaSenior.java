@@ -22,4 +22,9 @@ public class VendedorEnPlantillaSenior extends VendedorEnPlantilla { //WMC=5 WMC
 		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC+1 //CCog+1
 	}
 	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+	
 }

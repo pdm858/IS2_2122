@@ -21,4 +21,10 @@ public class VendedorEnPlantillaJunior extends VendedorEnPlantilla { //WMC=5 WMC
 		VendedorEnPlantillaJunior v = (VendedorEnPlantillaJunior) obj;
 		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC+1 //CCog+1
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+	
 }
