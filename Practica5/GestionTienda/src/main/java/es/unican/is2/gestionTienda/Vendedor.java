@@ -6,11 +6,7 @@ package es.unican.is2.gestionTienda;
  * Por cada vendedor se almacenan sus datos personales 
  * y sus datos sobre ventas y comisiones
  */
-<<<<<<< HEAD
 public abstract class Vendedor { //WMC=6 WMCn=6/6=1 //CCog=0
-=======
-public abstract class Vendedor {
->>>>>>> origin
 	
 	private String id;
 	private String nombre;
@@ -19,11 +15,7 @@ public abstract class Vendedor {
 	// Valor total de las ventas mensuales realizadas por el vendedor
 	private double t;
 	
-<<<<<<< HEAD
 	public Vendedor(String nombre, String id) { //WMC+1
-=======
-	public Vendedor(String nombre, String id) {
->>>>>>> origin
 		this.nombre = nombre;
 		this.id = id;
 	}
@@ -33,11 +25,7 @@ public abstract class Vendedor {
 	 * Retorna el nombre del vendedor
 	 * @return nombre
 	 */
-<<<<<<< HEAD
 	public String getNombre() { //WMC+1
-=======
-	public String getNombre() {
->>>>>>> origin
 		return nombre;
 	}
 	
@@ -45,11 +33,7 @@ public abstract class Vendedor {
 	 * Retorna el dni del vendedor
 	 * @return dni
 	 */
-<<<<<<< HEAD
 	public String getId() { //WMC+1
-=======
-	public String getId() {
->>>>>>> origin
 		return id;
 	}
 	
@@ -58,11 +42,7 @@ public abstract class Vendedor {
 	 * Retorna el total de ventas acumuladas por el vendedor
 	 * @return Total de ventas
 	 */
-<<<<<<< HEAD
 	public double getTotalVentas() { //WMC+1
-=======
-	public double getTotalVentas() {
->>>>>>> origin
 		return t;
 	}
 	
@@ -71,11 +51,7 @@ public abstract class Vendedor {
 	 * Se utiliza para poder cargar los datos desde fichero
 	 * @param Total de ventas
 	 */
-<<<<<<< HEAD
 	public void setT(double totalVentas) { //WMC+1
-=======
-	public void setT(double totalVentas) {
->>>>>>> origin
 		this.t = totalVentas;
 	}
 	
@@ -83,11 +59,7 @@ public abstract class Vendedor {
 	 * Anhade una nueva venta al vendedor, actualizando su comision
 	 * @param importe de la venta
 	 */
-<<<<<<< HEAD
 	public void anhade(double importe){ //WMC+1
-=======
-	public void anhade(double importe){
->>>>>>> origin
 		t += importe;
 	}
 	

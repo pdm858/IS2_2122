@@ -15,20 +15,12 @@ import fundamentos.Mensaje;
 /**
  * Gestión de las comisiones de vendedores de una tienda
  */
-<<<<<<< HEAD
 public class GestionComisiones { //WMC=12 WMCn=12/2=6 //CCog=23
-=======
-public class GestionComisiones {
->>>>>>> origin
 
 	/**
 	 * Programa principal basado en menu
 	 */
-<<<<<<< HEAD
 	public static void main(String[] args) { //WMC+1
-=======
-	public static void main(String[] args) {
->>>>>>> origin
 		// opciones del menu
 		final int NUEVA_VENTA = 0, VENDEDOR_DEL_MES = 1, VENDEDORES = 2;
 
@@ -51,21 +43,12 @@ public class GestionComisiones {
 		int opcion;
 
 		// lazo de espera de comandos del usuario
-<<<<<<< HEAD
 		while (true) { //WMC+1 //CCog+1
 			opcion = menu.leeOpcion();
 
 			// realiza las acciones dependiendo de la opcion elegida
 			switch (opcion) { //CCog+2
 			case NUEVA_VENTA: //WMC+1
-=======
-		while (true) {
-			opcion = menu.leeOpcion();
-
-			// realiza las acciones dependiendo de la opcion elegida
-			switch (opcion) {
-			case NUEVA_VENTA:
->>>>>>> origin
 				lect = new Lectura("Datos Venta");
 				lect.creaEntrada("Id Vendedor", "");
 				lect.creaEntrada("Importe", "");
@@ -73,76 +56,39 @@ public class GestionComisiones {
 				dni = lect.leeString("Id Vendedor");
 				double importe = lect.leeDouble("Importe");
 				try {
-<<<<<<< HEAD
 					if (!tienda.anhadeVenta(dni, importe)) { //WMC+1 //CCog+3
 						mensaje("ERROR", "El vendedor no existe");
 					}
 				} catch (IOException e) { //CCog+3
-=======
-					if (!tienda.anhadeVenta(dni, importe)) {
-						mensaje("ERROR", "El vendedor no existe");
-					}
-				} catch (IOException e) {
->>>>>>> origin
 					mensaje("ERROR", "No se pudo guardar el cambio");
 				}
 				break;
-
-<<<<<<< HEAD
 			case VENDEDOR_DEL_MES: //WMC+1
-=======
-			case VENDEDOR_DEL_MES:
->>>>>>> origin
-
 				vendedores = tienda.vendedores();
 				resultado = new LinkedList<Vendedor>();
 				double maxVentas = 0.0;
-<<<<<<< HEAD
 				for (Vendedor v : vendedores) { //WMC+1 //CCog+3
 					if (v.getTotalVentas() > maxVentas) { //WMC+1 //CCog+4
 						maxVentas = v.getTotalVentas();
 						resultado.clear();
 						resultado.add(v);
 					} else if (v.getTotalVentas() == maxVentas) { //WMC+1 //CCog+1
-=======
-				for (Vendedor v : vendedores) {
-					if (v.getTotalVentas() > maxVentas) {
-						maxVentas = v.getTotalVentas();
-						resultado.clear();
-						resultado.add(v);
-					} else if (v.getTotalVentas() == maxVentas) {
->>>>>>> origin
 						resultado.add(v);
 					}
 				}
 
 				msj = "";
-<<<<<<< HEAD
 				for (Vendedor vn : resultado) { //WMC+1 //CCog+3
-=======
-				for (Vendedor vn : resultado) {
->>>>>>> origin
 					msj += vn.getNombre() + "\n";
 				}
 				mensaje("VENDEDORES DEL MES", msj);
 				break;
-
-			
-<<<<<<< HEAD
 		case VENDEDORES: //WMC+1
-=======
-		case VENDEDORES:
->>>>>>> origin
-
 			vendedores = tienda.vendedores();
 			System.out.println(vendedores.size());
 			Collections.sort(vendedores, new ComparadorVendedorVentas());			
 			msj = "";
-<<<<<<< HEAD
 			for (Vendedor vn : vendedores) { //WMC+1 //CCog+3
-=======
-			for (Vendedor vn : vendedores) {
->>>>>>> origin
 				msj += vn.getNombre() + " " + vn.getTotalVentas() + "\n";
 			}
 			mensaje("VENDEDORES", msj);
@@ -156,31 +102,18 @@ public class GestionComisiones {
 	 * @param titulo Titulo de la ventana
 	 * @param txt Texto contenido en la ventana
 	 */
-<<<<<<< HEAD
 	private static void mensaje(String titulo, String txt) { //WMC+1
-=======
-	private static void mensaje(String titulo, String txt) {
->>>>>>> origin
 		Mensaje msj = new Mensaje(titulo);
 		msj.escribe(txt);
 
 	}
 	
-<<<<<<< HEAD
 	public static class ComparadorVendedorVentas implements Comparator<Vendedor>  { //WMC=3 WMCn=3/1=3 //CCog=2
 
 		public int compare(Vendedor o1, Vendedor o2) { //WMC+1
 			if (o1.getTotalVentas()>o2.getTotalVentas()) //WMC+1 //CCog+1
 				return -1;
 			else if (o1.getTotalVentas()<o2.getTotalVentas()) //WMC+1 //CCog+1
-=======
-	public static class ComparadorVendedorVentas implements Comparator<Vendedor>  {
-
-		public int compare(Vendedor o1, Vendedor o2) {
-			if (o1.getTotalVentas()>o2.getTotalVentas())
-				return -1;
-			else if (o1.getTotalVentas()<o2.getTotalVentas())
->>>>>>> origin
 				return 1;
 			return 0;
 		}
