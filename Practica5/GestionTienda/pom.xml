@@ -4,6 +4,7 @@
   <artifactId>GestionTienda</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+<<<<<<< HEAD
    <properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -22,4 +23,25 @@
   		<version>0.1</version>
   	</dependency>
   </dependencies>
+=======
+  <dependencies>
+  	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.13.2</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>es.unican.is2</groupId>
+		<artifactId>fundamentos</artifactId>
+		<version>0.1</version>
+	</dependency>
+  </dependencies>
+  
+  <properties>
+	<maven.compiler.source>11</maven.compiler.source>
+	<maven.compiler.target>11</maven.compiler.target>
+  </properties>
+
+>>>>>>> origin
 </project>
