@@ -104,9 +104,10 @@ public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 		return true;
 	}
 
-	private void leeSeccion(Scanner in, String tipoVendedor, LinkedList<Vendedor> lista) { //WMC+1
+	private void leeSeccion(Scanner in, String tipoVendedor,
+			String siguienteTipoVendedor, LinkedList<Vendedor> lista) { //WMC+1
 		Vendedor ven = null;
-		while (in.hasNext() && !in.next().equals(tipoVendedor)) { //WMC+1+1	//CCog+1+1
+		while (in.hasNext() && !in.next().equals(siguienteTipoVendedor)) { //WMC+1+1	//CCog+1+1
 			String nombre = in.next();
 			in.next();
 			String idIn = in.next();
@@ -128,6 +129,7 @@ public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 
     private void leeFich() { //WMC+1
 		Scanner in = null;
+		lista.clear();
 		try {
 			// abre el fichero
 			in = new Scanner(new FileReader(datos));
@@ -137,11 +139,11 @@ public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 			direccion = in.nextLine();
 			in.next();
 			// lee los vendedores senior
-			leeSeccion(in, "Senior", lista);
+			leeSeccion(in, "Senior", "Junior", lista);
 			// lee los vendedores junior
-			leeSeccion(in, "Junior", lista);
+			leeSeccion(in, "Junior", "Pr·cticas", lista);
 			// lee los vendedores en practicas
-			leeSeccion(in, "Pr√°cticas", lista);
+			leeSeccion(in, "", "", lista);
 		} catch (FileNotFoundException e) { //CCog+1
 			System.out.println("No se pudo leer el fichero");
 		} finally {
@@ -224,7 +226,8 @@ public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 		}
 	}
 
-	public void ventasMaximas(List<Vendedor> resultado, double maxVentas) { //WMC+1
+	public void ventasMaximas(List<Vendedor> resultado) { //WMC+1
+		double maxVentas = 0.0;
 		for (Vendedor v : lista) { //WMC+1 //CCog+1
 			if (v.getTotalVentas() > maxVentas) { //WMC+1 //CCog+2
 				maxVentas = v.getTotalVentas();

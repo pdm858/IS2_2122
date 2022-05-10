@@ -63,13 +63,10 @@ public class GestionComisiones { //WMC=9 WMCn=9/2=4.5 //CCog=15
 					mensaje("ERROR", "No se pudo guardar el cambio");
 				}
 				break;
-
 			case VENDEDOR_DEL_MES: //WMC+1
-
 				vendedores = tienda.vendedores();
 				resultado = new LinkedList<Vendedor>();
-				double maxVentas = 0.0;
-				tienda.ventasMaximas(resultado, maxVentas);
+				tienda.ventasMaximas(resultado);
 
 				msj = "";
 				for (Vendedor vn : resultado) { //WMC+1 //CCog+3
@@ -77,10 +74,7 @@ public class GestionComisiones { //WMC=9 WMCn=9/2=4.5 //CCog=15
 				}
 				mensaje("VENDEDORES DEL MES", msj);
 				break;
-
-			
 			case VENDEDORES: //WMC+1
-	
 				vendedores = tienda.vendedores();
 				System.out.println(vendedores.size());
 				Collections.sort(vendedores, new ComparadorVendedorVentas());			
