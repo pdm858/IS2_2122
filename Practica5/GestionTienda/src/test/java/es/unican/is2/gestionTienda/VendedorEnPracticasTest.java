@@ -7,19 +7,11 @@ import org.junit.Test;
 
 public class VendedorEnPracticasTest {
 	
-<<<<<<< HEAD
-	private static VendedorEnPracticas sut;
-
-	@Before
-	public void setUp(){
-		sut = new VendedorEnPracticas("Ana", "1", "11111111A");
-=======
 	private static vendedorEnPracticas sut;
 
 	@Before
 	public void setUp(){
 		sut = new vendedorEnPracticas("Ana", "1", "11111111A");
->>>>>>> origin
 	}
 	
 	@Test
@@ -58,15 +50,9 @@ public class VendedorEnPracticasTest {
 	
 	@Test
 	public void testEquals() {
-<<<<<<< HEAD
-		VendedorEnPracticas igual = new VendedorEnPracticas("Ana", "1", "11111111A");
-		VendedorEnPracticas distintoId = new VendedorEnPracticas("Ana", "2", "11111111A");
-		VendedorEnPracticas distintoNombre = new VendedorEnPracticas("Pepe", "1", "222222222A");
-=======
 		vendedorEnPracticas igual = new vendedorEnPracticas("Ana", "1", "11111111A");
 		vendedorEnPracticas distintoId = new vendedorEnPracticas("Ana", "2", "11111111A");
 		vendedorEnPracticas distintoNombre = new vendedorEnPracticas("Pepe", "1", "222222222A");
->>>>>>> origin
 		
 		assertTrue(sut.equals(igual));
 		assertFalse(sut.equals(distintoId));
