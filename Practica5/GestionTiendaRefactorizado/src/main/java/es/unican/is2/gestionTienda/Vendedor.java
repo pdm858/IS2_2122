@@ -17,7 +17,7 @@ public abstract class Vendedor { //WMC=8 WMCn=8/8=1 //CCog=0
 	// Valor total de las ventas mensuales realizadas por el vendedor
 	private double t;
 	
-	public Vendedor(String nombre, String id, String dni) { //WMC+1
+	protected Vendedor(String nombre, String id, String dni) { //WMC+1
 		this.nombre = nombre;
 		this.id = id;
 		this.dni = dni;

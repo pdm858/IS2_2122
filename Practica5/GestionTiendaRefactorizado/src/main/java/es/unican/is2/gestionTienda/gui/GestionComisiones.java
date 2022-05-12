@@ -76,13 +76,14 @@ public class GestionComisiones { //WMC=9 WMCn=9/2=4.5 //CCog=15
 				break;
 			case VENDEDORES: //WMC+1
 				vendedores = tienda.vendedores();
-				System.out.println(vendedores.size());
 				Collections.sort(vendedores, new ComparadorVendedorVentas());			
 				msj = "";
 				for (Vendedor vn : vendedores) { //WMC+1 //CCog+3
 					msj += vn.getNombre() + " " + vn.getTotalVentas() + "\n";
 				}
 				mensaje("VENDEDORES", msj);
+				break;
+			default:
 				break;
 			}
 		}

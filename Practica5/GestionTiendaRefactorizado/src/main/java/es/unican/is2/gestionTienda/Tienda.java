@@ -18,6 +18,8 @@ import java.util.Scanner;
  */
 public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 
+	private static final String JUNIOR = "Junior";
+	private static final String SENIOR = "Senior";
 	private LinkedList<Vendedor> lista = new LinkedList<Vendedor>();
 	private String direccion;
 	private String nombre;
@@ -108,19 +110,19 @@ public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 			String siguienteTipoVendedor, LinkedList<Vendedor> lista) { //WMC+1
 		Vendedor ven = null;
 		while (in.hasNext() && !in.next().equals(siguienteTipoVendedor)) { //WMC+1+1	//CCog+1+1
-			String nombre = in.next();
+			String elNombre = in.next();
 			in.next();
 			String idIn = in.next();
 			in.next();
 			String dni= in.next();
 			in.next();
 			double totalVentas = in.nextDouble();
-			if (tipoVendedor.equals("Senior")) { //WMC+1 //CCog+2
-				ven = new VendedorEnPlantillaSenior(nombre, idIn, dni);
-			} else if (tipoVendedor.equals("Junior")) { //WMC+1 //CCog+1
-				ven = new VendedorEnPlantillaJunior(nombre, idIn, dni);
+			if (tipoVendedor.equals(SENIOR)) { //WMC+1 //CCog+2
+				ven = new VendedorEnPlantillaSenior(elNombre, idIn, dni);
+			} else if (tipoVendedor.equals(JUNIOR)) { //WMC+1 //CCog+1
+				ven = new VendedorEnPlantillaJunior(elNombre, idIn, dni);
 			} else { //CCog+1
-				ven = new VendedorEnPracticas(nombre, idIn, dni);
+				ven = new VendedorEnPracticas(elNombre, idIn, dni);
 			}
 			ven.setT(totalVentas);
 			lista.add(ven);
@@ -128,28 +130,24 @@ public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 	}
 
     private void leeFich() { //WMC+1
-		Scanner in = null;
 		lista.clear();
-		try {
+		try (
 			// abre el fichero
-			in = new Scanner(new FileReader(datos));
+			Scanner in = new Scanner(new FileReader(datos));
+			) {
 			// configura el formato de n√∫meros
 			in.useLocale(Locale.ENGLISH);
-			nombre = in.nextLine();
-			direccion = in.nextLine();
+			in.nextLine();
+			in.nextLine();
 			in.next();
 			// lee los vendedores senior
-			leeSeccion(in, "Senior", "Junior", lista);
+			leeSeccion(in, SENIOR, JUNIOR, lista);
 			// lee los vendedores junior
-			leeSeccion(in, "Junior", "Pr·cticas", lista);
+			leeSeccion(in, JUNIOR, "Pr·cticas", lista);
 			// lee los vendedores en practicas
 			leeSeccion(in, "", "", lista);
 		} catch (FileNotFoundException e) { //CCog+1
 			System.out.println("No se pudo leer el fichero");
-		} finally {
-			if (in != null) { //WMC+1 //CCog+1
-				in.close();
-			}
 		}
     }
 
@@ -179,11 +177,11 @@ public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 	}
 
 	/**
-	 * M√©todo que actualiza el fichero datosTienda.txt 
+	 * Metodo que actualiza el fichero datosTienda.txt 
 	 * con los datos actualizados de los vendedores
 	 */
 	private void vuelcaDatos() throws IOException { //WMC+1
-		PrintWriter out = null;
+		
 		List<Vendedor> senior = new LinkedList<Vendedor>();
 		List<Vendedor> junior = new LinkedList<Vendedor>();
 		List<Vendedor> practicas = new LinkedList<Vendedor>();
@@ -198,26 +196,26 @@ public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 			}
 		}
 
-		try {
-			out = new PrintWriter(new FileWriter(datos));
-			out.println(nombre);
-			out.println(direccion);
+		
+		PrintWriter out = new PrintWriter(new FileWriter(datos));
+	
+		out.println(nombre);
+		out.println(direccion);
 
-			out.println();
-			out.println("Senior");	
-			imprimeDatosVendedores(senior, out);
+		out.println();
+		out.println(SENIOR);	
+		imprimeDatosVendedores(senior, out);
 
-			out.println();
-			out.println("Junior");
-			imprimeDatosVendedores(junior, out);
+		out.println();
+		out.println(JUNIOR);
+		imprimeDatosVendedores(junior, out);
 
-			out.println();
-			out.println("Pr·cticas");	
-			imprimeDatosVendedores(practicas, out);
-		} finally {
-			if (out != null) //WMC+1 //CCog+1
-				out.close();
-		}
+		out.println();
+		out.println("Pr·cticas");	
+		imprimeDatosVendedores(practicas, out);
+	
+		out.close();
+		
 	}
 	
 	private void imprimeDatosVendedores(List<Vendedor> vendedores, PrintWriter out) { //WMC+1
