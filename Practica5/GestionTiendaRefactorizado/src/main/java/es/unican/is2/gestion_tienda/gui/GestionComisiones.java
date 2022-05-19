@@ -1,4 +1,4 @@
-package es.unican.is2.gestionTienda.gui;
+package es.unican.is2.gestion_tienda.gui;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -6,8 +6,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import es.unican.is2.gestionTienda.Tienda;
-import es.unican.is2.gestionTienda.Vendedor;
+import es.unican.is2.gestion_tienda.Tienda;
+import es.unican.is2.gestion_tienda.Vendedor;
 import fundamentos.Menu;
 import fundamentos.Lectura;
 import fundamentos.Mensaje;
@@ -22,7 +22,9 @@ public class GestionComisiones { //WMC=9 WMCn=9/2=4.5 //CCog=15
 	 */
 	public static void main(String[] args) { //WMC+1
 		// opciones del menu
-		final int NUEVA_VENTA = 0, VENDEDOR_DEL_MES = 1, VENDEDORES = 2;
+		final int NUEVA_VENTA = 0;
+		final int VENDEDOR_DEL_MES = 1;
+		final int VENDEDORES = 2;
 
 		// variables auxiliares
 		String dni;
@@ -31,6 +33,7 @@ public class GestionComisiones { //WMC=9 WMCn=9/2=4.5 //CCog=15
 		List<Vendedor> vendedores;
 		List<Vendedor> resultado;
 		String msj;
+		StringBuilder bld = new StringBuilder();
 
 		// crea la tienda
 		Tienda tienda = new Tienda("C:\\Temp\\datosTienda.txt");
@@ -64,23 +67,27 @@ public class GestionComisiones { //WMC=9 WMCn=9/2=4.5 //CCog=15
 				}
 				break;
 			case VENDEDOR_DEL_MES: //WMC+1
-				vendedores = tienda.vendedores();
-				resultado = new LinkedList<Vendedor>();
+				resultado = new LinkedList<>();
 				tienda.ventasMaximas(resultado);
 
-				msj = "";
 				for (Vendedor vn : resultado) { //WMC+1 //CCog+3
-					msj += vn.getNombre() + "\n";
+					bld.append(vn.getNombre());
+					bld.append("\n");
 				}
+				msj = bld.toString();
 				mensaje("VENDEDORES DEL MES", msj);
 				break;
 			case VENDEDORES: //WMC+1
 				vendedores = tienda.vendedores();
-				Collections.sort(vendedores, new ComparadorVendedorVentas());			
-				msj = "";
+				Collections.sort(vendedores, new ComparadorVendedorVentas());
+				
 				for (Vendedor vn : vendedores) { //WMC+1 //CCog+3
-					msj += vn.getNombre() + " " + vn.getTotalVentas() + "\n";
+					bld.append(vn.getNombre());
+					bld.append(" ");
+					bld.append(vn.getTotalVentas());
+					bld.append("\n");
 				}
+				msj = bld.toString();
 				mensaje("VENDEDORES", msj);
 				break;
 			default:

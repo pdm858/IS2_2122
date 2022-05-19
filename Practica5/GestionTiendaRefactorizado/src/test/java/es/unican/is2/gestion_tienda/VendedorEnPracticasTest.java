@@ -1,10 +1,9 @@
-package es.unican.is2.gestionTienda;
+package es.unican.is2.gestion_tienda;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-//T@D@
 public class VendedorEnPracticasTest {
 	
 	private static VendedorEnPracticas sut;
@@ -19,31 +18,31 @@ public class VendedorEnPracticasTest {
 		assertEquals("1", sut.getId());
 		assertEquals("Ana", sut.getNombre());
 		assertEquals("11111111A", sut.getDni());
-		assertTrue(sut.getTotalVentas()==0.0);
+		assertEquals(0.0, sut.getTotalVentas(), 0);
 	}
 	
 	@Test
 	public void testSetTotalVentas() {
 		sut.setT(100);
-		assertTrue(sut.getTotalVentas()==100.0);
+		assertEquals(100.0, sut.getTotalVentas(), 0);
 		
 		sut.setT(230);
-		assertTrue(sut.getTotalVentas()==230.0);
+		assertEquals(230.0, sut.getTotalVentas(), 0);
 		
 		sut.setT(0);
-		assertTrue(sut.getTotalVentas()==0.0);
+		assertEquals(0.0, sut.getTotalVentas(), 0);
 	}
 
 	@Test
 	public void testAnhadeVenta() {
 		sut.anhade(200);
-		assertTrue(sut.getTotalVentas() == 200.0);
+		assertEquals(200.0, sut.getTotalVentas(), 0);
 		
 		sut.anhade(300);
-		assertTrue(sut.getTotalVentas() == 500.0);	
+		assertEquals(500.0, sut.getTotalVentas(), 0);	
 		
 		sut.anhade(0);
-		assertTrue(sut.getTotalVentas() == 500.0);
+		assertEquals(500.0, sut.getTotalVentas(), 0);
 		
 		
 	}
@@ -54,9 +53,9 @@ public class VendedorEnPracticasTest {
 		VendedorEnPracticas distintoId = new VendedorEnPracticas("Ana", "2", "11111111A");
 		VendedorEnPracticas distintoNombre = new VendedorEnPracticas("Pepe", "1", "222222222A");
 		
-		assertTrue(sut.equals(igual));
-		assertFalse(sut.equals(distintoId));
-		assertFalse(sut.equals(distintoNombre));
+		assertEquals(igual, sut);
+		assertNotEquals(distintoId, sut);
+		assertNotEquals(distintoNombre, sut);
 	}
 	
 	

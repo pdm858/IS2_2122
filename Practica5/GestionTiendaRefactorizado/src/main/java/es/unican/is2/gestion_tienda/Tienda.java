@@ -1,4 +1,4 @@
-package es.unican.is2.gestionTienda;
+package es.unican.is2.gestion_tienda;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,7 +20,7 @@ public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 
 	private static final String JUNIOR = "Junior";
 	private static final String SENIOR = "Senior";
-	private LinkedList<Vendedor> lista = new LinkedList<Vendedor>();
+	private LinkedList<Vendedor> lista = new LinkedList<>();
 	private String direccion;
 	private String nombre;
 
@@ -182,9 +182,9 @@ public class Tienda { //WMC=33 WMCn=33/13=2.54 //CCog=26
 	 */
 	private void vuelcaDatos() throws IOException { //WMC+1
 		
-		List<Vendedor> senior = new LinkedList<Vendedor>();
-		List<Vendedor> junior = new LinkedList<Vendedor>();
-		List<Vendedor> practicas = new LinkedList<Vendedor>();
+		List<Vendedor> senior = new LinkedList<>();
+		List<Vendedor> junior = new LinkedList<>();
+		List<Vendedor> practicas = new LinkedList<>();
 
 		for (Vendedor v : lista) { //WMC+1 //CCog+1
 			if (v instanceof VendedorEnPracticas) {	//WMC+1	CCog+2

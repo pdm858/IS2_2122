@@ -1,25 +1,27 @@
-package es.unican.is2.gestionTienda;
+package es.unican.is2.gestion_tienda;
 
+public class VendedorEnPlantillaJunior extends VendedorEnPlantilla { //WMC=5 WMCn=5/3=1.67 //CCog=2
 
-public class VendedorEnPracticas extends Vendedor { //WMC=4 WMCn=4/2=2 //CCog=2
+	private static final double COMISION = 0.005;
 	
-	/**
-	 * Retorna un nuevo vendedor en pr�cticas
-	 * @param nombre
-	 * @param dni
-	 */
-	public VendedorEnPracticas(String nombre, String id, String dni) { //WMC+1
+	public VendedorEnPlantillaJunior(String nombre, String id, String dni) { //WMC+1
 		super(nombre, id, dni);
+	}
+
+	@Override
+	public double importeFinal (double importe) { //WMC+1
+		importe += importe * COMISION;
+		return importe;
 	}
 	
 	@Override
 	public boolean equals(Object obj) { //WMC+1
-		if (!(obj instanceof VendedorEnPracticas)) //WMC+1 //CCog+1
+		if (!(obj instanceof VendedorEnPlantillaJunior)) //WMC+1 //CCog+1
 			return false;
-		VendedorEnPracticas v = (VendedorEnPracticas) obj;
+		VendedorEnPlantillaJunior v = (VendedorEnPlantillaJunior) obj;
 		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC+1 //CCog+1
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

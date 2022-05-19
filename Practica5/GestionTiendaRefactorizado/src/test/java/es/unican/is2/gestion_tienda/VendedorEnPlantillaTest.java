@@ -1,4 +1,4 @@
-package es.unican.is2.gestionTienda;
+package es.unican.is2.gestion_tienda;
 import static org.junit.Assert.*;
 
 import org.junit.Before;

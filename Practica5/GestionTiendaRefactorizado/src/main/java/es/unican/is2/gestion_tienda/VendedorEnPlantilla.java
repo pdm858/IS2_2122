@@ -1,4 +1,4 @@
-package es.unican.is2.gestionTienda;
+package es.unican.is2.gestion_tienda;
 
 
 public class VendedorEnPlantilla extends Vendedor { //WMC=5 WMCn=5/3=1.67 //CCog=2
